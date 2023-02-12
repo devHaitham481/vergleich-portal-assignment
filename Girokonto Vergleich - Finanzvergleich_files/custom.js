@@ -1,19 +1,19 @@
 jQuery(document).ready(function ($) {
   // Table of Content SlideToggle
-  $(".ntoc_toggle").click(function (event) {
-    $(this).text($(this).text() == "Anzeigen" ? "Verbergen" : "Anzeigen");
+  $('.ntoc_toggle').click(function (event) {
+    $(this).text($(this).text() == 'Anzeigen' ? 'Verbergen' : 'Anzeigen');
     event.preventDefault();
-    $(".ntoc_list").slideToggle();
+    $('.ntoc_list').slideToggle();
   });
-  $(".ntoc_list ul li a").click(function () {
-    $(".ntoc_toggle").text("Anzeigen");
-    $(".ntoc_list").slideUp();
+  $('.ntoc_list ul li a').click(function () {
+    $('.ntoc_toggle').text('Anzeigen');
+    $('.ntoc_list').slideUp();
   });
   // Check if the TOC is sticky
   function checkForClassChanges() {
-    if ($(".ntoc").hasClass("fusion-sticky-transition")) {
-      $(".ntoc_toggle").text("Anzeigen");
-      $(".ntoc_list").slideUp();
+    if ($('.ntoc').hasClass('fusion-sticky-transition')) {
+      $('.ntoc_toggle').text('Anzeigen');
+      $('.ntoc_list').slideUp();
     } else {
       setTimeout(checkForClassChanges, 500);
     }
@@ -24,97 +24,97 @@ jQuery(document).ready(function ($) {
     var scroll = $(window).scrollTop();
 
     if (scroll >= 100) {
-      $(".single-post .fusion-is-sticky").css("visibility", "hidden");
+      $('.single-post .fusion-is-sticky').css('visibility', 'hidden');
     } else {
-      $(".single-post .fusion-is-sticky").css("visibility", "visible");
+      $('.single-post .fusion-is-sticky').css('visibility', 'visible');
     }
   });
 
-  $(".product-tabs").easytabs({
+  $('.product-tabs').easytabs({
     animate: false,
     updateHash: false,
   });
 
   // MAKE SURE YOUR SELECTOR MATCHES SOMETHING IN YOUR HTML!!!
   let positionSettings = {
-    my: "bottom center",
-    at: "top center",
+    my: 'bottom center',
+    at: 'top center',
   };
   if ($(window).width() < 450) {
     positionSettings = {
-      my: "bottom left",
+      my: 'bottom left',
       viewport: $(window),
     };
   }
 
-  $(".tipr").each(function () {
+  $('.tipr').each(function () {
     $(this).qtip({
       content: {
-        text: $(this).data("tip"),
+        text: $(this).data('tip'),
       },
       position: positionSettings,
       style: {
-        classes: "qtip-bootstrap qtip-shadow",
+        classes: 'qtip-bootstrap qtip-shadow',
       },
     });
   });
 
-  $(".product-tabs").hide();
+  $('.product-tabs').hide();
 
-  $(".toggle-tabs").click(function () {
-    var container = $("#tab-container-" + $(this).data("id"));
+  $('.toggle-tabs').click(function () {
+    var container = $('#tab-container-' + $(this).data('id'));
 
-    $(".toggle-tabs").removeClass("toggle-active");
-    $(this).addClass("toggle-active");
-    $(this).parent().toggleClass("toggle-parent-active");
-    $("i.icon-toggle").addClass("fa-chevron-circle-down");
-    $("i.icon-toggle").removeClass("fa-times-circle");
+    $('.toggle-tabs').removeClass('toggle-active');
+    $(this).addClass('toggle-active');
+    $(this).parent().toggleClass('toggle-parent-active');
+    $('i.icon-toggle').addClass('fa-chevron-circle-down');
+    $('i.icon-toggle').removeClass('fa-times-circle');
 
-    if (container.is(":visible")) {
-      $(".product-tabs").slideUp();
-      $(this).removeClass("toggle-active");
+    if (container.is(':visible')) {
+      $('.product-tabs').slideUp();
+      $(this).removeClass('toggle-active');
     } else {
-      $(".product-tabs").slideUp();
+      $('.product-tabs').slideUp();
 
       container.slideDown();
 
-      $(this).find("i.icon-toggle").addClass("fa-times-circle");
-      $(this).find("i.icon-toggle").removeClass("fa-chevron-circle-down");
+      $(this).find('i.icon-toggle').addClass('fa-times-circle');
+      $(this).find('i.icon-toggle').removeClass('fa-chevron-circle-down');
     }
   });
 
   //This function allows the filter on mobile VErgleichseiten to be toggled and to switch the text
-  $("#mobile_filter_toggle").click(function () {
-    var $less_text = $("#mobile_filter_toggle").data("text-less");
-    var $more_text = $("#mobile_filter_toggle").data("text-more");
-    var $current_text = $("#mobile_filter_toggle .filter_text").text();
+  $('#mobile_filter_toggle').click(function () {
+    var $less_text = $('#mobile_filter_toggle').data('text-less');
+    var $more_text = $('#mobile_filter_toggle').data('text-more');
+    var $current_text = $('#mobile_filter_toggle .filter_text').text();
 
-    $("#products-filter").slideToggle();
-    $("#products-calculator").slideToggle();
-    $("#product-sort-filter").slideToggle();
+    $('#products-filter').slideToggle();
+    $('#products-calculator').slideToggle();
+    $('#product-sort-filter').slideToggle();
 
     if ($current_text == $less_text) {
-      $("#mobile_filter_toggle .filter_text").text($more_text);
-      $("#mobile_filter_toggle .icon-toggle").css("transform", "rotate( 0deg)");
+      $('#mobile_filter_toggle .filter_text').text($more_text);
+      $('#mobile_filter_toggle .icon-toggle').css('transform', 'rotate( 0deg)');
     }
     if ($current_text == $more_text) {
-      $("#mobile_filter_toggle .filter_text").text($less_text);
-      $("#mobile_filter_toggle .icon-toggle").css(
-        "transform",
-        "rotate( 180deg)"
+      $('#mobile_filter_toggle .filter_text').text($less_text);
+      $('#mobile_filter_toggle .icon-toggle').css(
+        'transform',
+        'rotate( 180deg)'
       );
     }
   });
 
   var $checkboxes = $('.products-filter input[type="checkbox"]');
-  var $boxes = $(".product-item");
+  var $boxes = $('.product-item');
 
   $checkboxes
-    .on("change", function () {
+    .on('change', function () {
       var selectedOptions = {};
 
-      $checkboxes.filter(":checked").each(function () {
-        if (typeof selectedOptions[this.name] == "undefined") {
+      $checkboxes.filter(':checked').each(function () {
+        if (typeof selectedOptions[this.name] == 'undefined') {
           selectedOptions[this.name] = [];
         }
 
@@ -126,7 +126,7 @@ jQuery(document).ready(function ($) {
       $.each(selectedOptions, function (type, selectedOption) {
         $filtered = $filtered.filter(function () {
           var matched = false,
-            currentFilters = $(this).data("filter").split(",");
+            currentFilters = $(this).data('filter').split(',');
 
           $.each(currentFilters, function (_, currentFilter) {
             if ($.inArray(currentFilter, selectedOption) != -1) {
@@ -142,47 +142,47 @@ jQuery(document).ready(function ($) {
       });
 
       $boxes.hide().filter($filtered).fadeIn(450);
-      $("span.product-count").text($(".product-item:visible").length);
+      $('span.product-count').text($('.product-item:visible').length);
     })
-    .trigger("change");
+    .trigger('change');
 
   //Sort the products
-  var $divssort = $(".product-item-listing");
+  var $divssort = $('.product-item-listing');
 
-  $(".sort_filter").click(function () {
+  $('.sort_filter').click(function () {
     var $this = $(this);
-    $("." + $this.attr("class"))
+    $('.' + $this.attr('class'))
       .parent()
-      .removeClass("sort_active");
-    $this.parent().addClass("sort_active");
+      .removeClass('sort_active');
+    $this.parent().addClass('sort_active');
 
-    if ($(this).data("option") === "desc") {
+    if ($(this).data('option') === 'desc') {
       //Sort desc
       $divssort
-        .find(".product-item")
+        .find('.product-item')
         .sort(function (a, b) {
           return (
             +$(b)
-              .find("span." + $this.data("val"))
-              .data("val") -
+              .find('span.' + $this.data('val'))
+              .data('val') -
             +$(a)
-              .find("span." + $this.data("val"))
-              .data("val")
+              .find('span.' + $this.data('val'))
+              .data('val')
           );
         })
         .appendTo($divssort);
     } else {
       //Sort asc
       $divssort
-        .find(".product-item")
+        .find('.product-item')
         .sort(function (a, b) {
           return (
             +$(a)
-              .find("span." + $this.data("val"))
-              .data("val") -
+              .find('span.' + $this.data('val'))
+              .data('val') -
             +$(b)
-              .find("span." + $this.data("val"))
-              .data("val")
+              .find('span.' + $this.data('val'))
+              .data('val')
           );
         })
         .appendTo($divssort);
@@ -192,109 +192,109 @@ jQuery(document).ready(function ($) {
 
   //Zaehlung der Ergebnisse
   setTimeout(function () {
-    $("span.product-count").text($(".product-item:visible").length);
+    $('span.product-count').text($('.product-item:visible').length);
   }, 500);
 
   /** Kreditvergleich Affix */
   if ($(window).width() >= 960) {
-    var target = $(".fa_vgl_filter");
+    var target = $('.fa_vgl_filter');
     target.after('<div class="affix" id="affix"></div>');
 
-    var affix = $(".affix");
+    var affix = $('.affix');
     affix.append(target.clone(true));
 
     //var header_height = $('.fusion-header-v1').outerHeight(true);
 
     // Show affix on scroll.
-    var element = document.getElementById("affix");
+    var element = document.getElementById('affix');
     if (element !== null) {
       var position = target.offset();
-      window.addEventListener("scroll", function () {
+      window.addEventListener('scroll', function () {
         var height = $(window).scrollTop();
         if (height > position.top) {
-          target.css("visibility", "hidden");
-          affix.css("display", "block");
-          affix.css("top", $(".fusion-header-v1").outerHeight(true));
+          target.css('visibility', 'hidden');
+          affix.css('display', 'block');
+          affix.css('top', $('.fusion-header-v1').outerHeight(true));
         } else {
-          affix.css("display", "none");
-          target.css("visibility", "visible");
+          affix.css('display', 'none');
+          target.css('visibility', 'visible');
         }
       });
     }
   }
 
   /**Kreditvergleich iFrame einfügen beim Klick**/
-  $(".kreditvergleich-button").click(function (event) {
+  $('.kreditvergleich-button').click(function (event) {
     event.preventDefault();
     var $this = $(this);
 
     if (
       window.location.href ===
-        "https://finanzvergleich.com/kredit/kreditvergleich/" ||
+        'https://finanzvergleich.com/kredit/kreditvergleich/' ||
       window.location.href ===
-        "https://finanzvergleich.com/kredit/kreditvergleich"
+        'https://finanzvergleich.com/kredit/kreditvergleich'
     ) {
-      window.location.href = $this.attr("href") + "&if=true";
+      window.location.href = $this.attr('href') + '&if=true';
       return;
     }
-    iframe_container = $("#" + $this.data("id"));
-    toggle_icon = $this.find("i.icon-toggle");
+    iframe_container = $('#' + $this.data('id'));
+    toggle_icon = $this.find('i.icon-toggle');
 
     //Hide all other open Containers
     //$(".product-iframe-container").hide();
 
     iframe_container.toggle();
 
-    if (iframe_container.is(":visible")) {
+    if (iframe_container.is(':visible')) {
       iframe_container.html(
         "<iframe frameborder='0' scrolling='auto' width='100%' height='100%' style='width:100%;height:100%;min-height:800px;border:1px solid #ccc;' src=" +
-          $this.attr("href") +
-          "></iframe>"
+          $this.attr('href') +
+          '></iframe>'
       );
-      toggle_icon.addClass("fa-times-circle");
-      toggle_icon.removeClass("fa-chevron-circle-down");
+      toggle_icon.addClass('fa-times-circle');
+      toggle_icon.removeClass('fa-chevron-circle-down');
 
-      $("html, body").animate(
+      $('html, body').animate(
         {
           scrollTop: iframe_container.offset().top - 250,
         },
         700
       );
     } else {
-      iframe_container.html("");
-      toggle_icon.addClass("fa-chevron-circle-down");
-      toggle_icon.removeClass("fa-times-circle");
-      iframe_container.html("");
+      iframe_container.html('');
+      toggle_icon.addClass('fa-chevron-circle-down');
+      toggle_icon.removeClass('fa-times-circle');
+      iframe_container.html('');
     }
   });
 
   /**Show current Date for latest refresh of the comparison tables */
   /** Use html: Stand <span id="current_month_localized"></span> <span id="current_year"></span> */
   if (
-    document.getElementById("current_month_localized") &&
-    document.getElementById("current_year")
+    document.getElementById('current_month_localized') &&
+    document.getElementById('current_year')
   ) {
     var date = new Date(),
-      month = date.toLocaleString("de-de", {
-        month: "long",
+      month = date.toLocaleString('de-de', {
+        month: 'long',
       });
 
-    document.getElementById("current_month_localized").innerHTML = month;
-    document.getElementById("current_year").innerHTML = date.getFullYear();
+    document.getElementById('current_month_localized').innerHTML = month;
+    document.getElementById('current_year').innerHTML = date.getFullYear();
   }
 
   if (jQuery(window).width() <= 882) {
-    jQuery(".list-cards-component .products-listing-top").click(function () {
-      if (jQuery(this).data("show") !== "1") {
-        jQuery(this).data("show", "1");
-        $(".list-cards-component .filter-header").slideDown();
+    jQuery('.list-cards-component .products-listing-top').click(function () {
+      if (jQuery(this).data('show') !== '1') {
+        jQuery(this).data('show', '1');
+        $('.list-cards-component .filter-header').slideDown();
       } else {
-        jQuery(this).data("show", "0");
-        $(".list-cards-component .filter_checkboxes:visible").slideUp();
-        $(".list-cards-component .filter-header").slideUp();
+        jQuery(this).data('show', '0');
+        $('.list-cards-component .filter_checkboxes:visible').slideUp();
+        $('.list-cards-component .filter-header').slideUp();
       }
     });
-    jQuery(".list-cards-component .filter-header").click(function () {
+    jQuery('.list-cards-component .filter-header').click(function () {
       jQuery(this).next().slideToggle();
     });
   }
@@ -304,30 +304,30 @@ jQuery(document).ready(function ($) {
    * The FC iFrame sends {"event":"ausblenden"} or {"event":"einblenden"}
    * Then, we can hide or show elements according to the funnel state
    */
-  window.addEventListener("message", receiveFinanzcheckMessage);
+  window.addEventListener('message', receiveFinanzcheckMessage);
 
   function receiveFinanzcheckMessage(event) {
     if (event.data == '{"event":"ausblenden"}') {
-      document.getElementById("menu-main-menu").style = "visibility:hidden";
-      document.getElementById("title-vergleich-fc").style = "display:none";
+      document.getElementById('menu-main-menu').style = 'visibility:hidden';
+      document.getElementById('title-vergleich-fc').style = 'display:none';
     } else if (event.data == '{"event":"einblenden"}') {
-      document.getElementById("menu-main-menu").style = "visibility:visible";
-      document.getElementById("title-vergleich-fc").style = "display:block";
+      document.getElementById('menu-main-menu').style = 'visibility:visible';
+      document.getElementById('title-vergleich-fc').style = 'display:block';
     }
   }
 
   /**
    * Credit comparison -> send form when select changed
    */
-  jQuery("#kreditvergleich_term, #kreditvergleich_purpose").change(function () {
-    jQuery("#kreditvergleich_filter").trigger("submit");
+  jQuery('#kreditvergleich_term, #kreditvergleich_purpose').change(function () {
+    jQuery('#kreditvergleich_filter').trigger('submit');
   });
 
   /**
    * Kreditbrückenseite: Angebot "ausgrauen" bis das Formular eingestellt wurde
    */
-  if (document.getElementById("credit_form_submitted") !== null) {
-  } else if (document.getElementById("credit_form_not_submitted") !== null) {
+  if (document.getElementById('credit_form_submitted') !== null) {
+  } else if (document.getElementById('credit_form_not_submitted') !== null) {
   }
 });
 
@@ -341,8 +341,8 @@ function pushParamToUrl(param, val) {
 
 function getParamFromUrl(name) {
   var url = window.location.href;
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regexS = '[\\?&]' + name + '=([^&#]*)';
   var regex = new RegExp(regexS);
   var results = regex.exec(url);
   return results == null ? null : decodeURIComponent(results[1]);
@@ -350,26 +350,26 @@ function getParamFromUrl(name) {
 
 //THis is a quick fix for the product details tabs. because they used an anchor, the user experienced a jump. after the script for the tabs loads itselfs and uses the anchors we remove them
 jQuery(window).load(function ($) {
-  jQuery(".etabs li.tab a").attr("href", "");
+  jQuery('.etabs li.tab a').attr('href', '');
 });
 
 //Sha1 code helper
 !(function () {
-  "use strict";
-  var root = "object" == typeof window ? window : {},
+  'use strict';
+  var root = 'object' == typeof window ? window : {},
     NODE_JS =
       !root.JS_SHA1_NO_NODE_JS &&
-      "object" == typeof process &&
+      'object' == typeof process &&
       process.versions &&
       process.versions.node;
   NODE_JS && (root = global);
   var COMMON_JS =
-      !root.JS_SHA1_NO_COMMON_JS && "object" == typeof module && module.exports,
-    AMD = "function" == typeof define && define.amd,
-    HEX_CHARS = "0123456789abcdef".split(""),
+      !root.JS_SHA1_NO_COMMON_JS && 'object' == typeof module && module.exports,
+    AMD = 'function' == typeof define && define.amd,
+    HEX_CHARS = '0123456789abcdef'.split(''),
     EXTRA = [-2147483648, 8388608, 32768, 128],
     SHIFT = [24, 16, 8, 0],
-    OUTPUT_TYPES = ["hex", "array", "digest", "arrayBuffer"],
+    OUTPUT_TYPES = ['hex', 'array', 'digest', 'arrayBuffer'],
     blocks = [],
     createOutputMethod = function (t) {
       return function (h) {
@@ -377,7 +377,7 @@ jQuery(window).load(function ($) {
       };
     },
     createMethod = function () {
-      var t = createOutputMethod("hex");
+      var t = createOutputMethod('hex');
       NODE_JS && (t = nodeWrap(t)),
         (t.create = function () {
           return new Sha1();
@@ -395,11 +395,11 @@ jQuery(window).load(function ($) {
       var crypto = eval("require('crypto')"),
         Buffer = eval("require('buffer').Buffer"),
         nodeMethod = function (t) {
-          if ("string" == typeof t)
-            return crypto.createHash("sha1").update(t, "utf8").digest("hex");
+          if ('string' == typeof t)
+            return crypto.createHash('sha1').update(t, 'utf8').digest('hex');
           if (t.constructor === ArrayBuffer) t = new Uint8Array(t);
           else if (void 0 === t.length) return method(t);
-          return crypto.createHash("sha1").update(new Buffer(t)).digest("hex");
+          return crypto.createHash('sha1').update(new Buffer(t)).digest('hex');
         };
       return nodeMethod;
     };
@@ -438,7 +438,7 @@ jQuery(window).load(function ($) {
 
   (Sha1.prototype.update = function (t) {
     if (!this.finalized) {
-      var h = "string" != typeof t;
+      var h = 'string' != typeof t;
       h && t.constructor === root.ArrayBuffer && (t = new Uint8Array(t));
       for (var s, e, i = 0, r = t.length || 0, o = this.blocks; i < r; ) {
         if (
@@ -939,7 +939,7 @@ jQuery(document).ready(function ($) {
   var browsermaxwidth = jQuery(window).width();
 
   if (browsermaxwidth < 668) {
-    jQuery(document).one("touchmove", function () {
+    jQuery(document).one('touchmove', function () {
       /* hook into the css jquery function to get as close to the original code as psoible */
       (function () {
         orig = jQuery.fn.css;
@@ -953,28 +953,28 @@ jQuery(document).ready(function ($) {
            * the orig_code triggers overflow and postion the last so we look for them and then run our code
            */
           var possible_tooltip = false;
-          if (arguments[0] == "position" || arguments[0] == "overflow") {
+          if (arguments[0] == 'position' || arguments[0] == 'overflow') {
             possible_tooltip = true;
           }
           // lets find the current dom objects selector
-          var element_id = jQuery(this).attr("id");
+          var element_id = jQuery(this).attr('id');
           // filter the right argument AND only on tooltips
-          if (jQuery(this).hasClass("qtip-focus") && possible_tooltip == true) {
+          if (jQuery(this).hasClass('qtip-focus') && possible_tooltip == true) {
             //because we are still to fast for the other code we need to have a small timeout to be the 'last' function to modify the dom object
             // there is a little bit of css in finwall css to make up for the delay and make everything llok a bit smoother
             setTimeout(function () {
-              current_tooltip = jQuery("#" + element_id);
+              current_tooltip = jQuery('#' + element_id);
 
               // get all necessary values and modify the element
               var browserwidth = jQuery(window).width();
               var element_width = browserwidth - 20;
 
-              current_tooltip.css("max-width", element_width);
-              current_tooltip.css("width", element_width);
-              current_tooltip.css("left", 10);
+              current_tooltip.css('max-width', element_width);
+              current_tooltip.css('width', element_width);
+              current_tooltip.css('left', 10);
 
               /* hide the small element which points to the tooltip origin */
-              jQuery("#" + element_id + " canvas").css("display", "none");
+              jQuery('#' + element_id + ' canvas').css('display', 'none');
             }, 500);
           }
           // reset argument indentifier
